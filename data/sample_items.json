@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Schlage F59 AND 613 Andover Interior Knob with Deadbolt",
+    "category": "Tools_and_Home_Improvement",
+    "price": 64.30,
+    "summary": "Title: Schlage Andover Interior Door Knob with Deadbolt\nCategory: Home Hardware\nBrand: Schlage\nDescription: Oil-rubbed bronze interior knob designed to pair with a Schlage handleset deadbolt.\nDetails: Requires 4-inch minimum door prep, lifetime mechanical and finish warranty, non-handed design.",
+    "weight": 1.5
+  },
+  {
+    "title": "Sony WH-1000XM4 Wireless Noise-Cancelling Headphones",
+    "category": "Electronics",
+    "price": 278.00,
+    "summary": "Title: Sony WH-1000XM4 Wireless Headphones\nCategory: Electronics\nBrand: Sony\nDescription: Industry-leading noise cancelling wireless headphones with 30-hour battery life.\nDetails: Touch sensor controls, speak-to-chat technology, Alexa voice control, multipoint connection.",
+    "weight": 0.55
+  },
+  {
+    "title": "DeWalt 20V MAX Cordless Drill Driver Kit",
+    "category": "Tools_and_Home_Improvement",
+    "price": 129.00,
+    "summary": "Title: DeWalt 20V MAX Cordless Drill\nCategory: Power Tools\nBrand: DeWalt\nDescription: Compact and lightweight cordless drill for drilling and fastening applications.\nDetails: High-speed transmission, LED work light, includes 2 batteries and charger.",
+    "weight": 3.97
+  },
+  {
+    "title": "KitchenAid KSM150PSER Artisan Stand Mixer 5-Qt",
+    "category": "Appliances",
+    "price": 349.99,
+    "summary": "Title: KitchenAid Artisan 5-Qt Stand Mixer\nCategory: Appliances\nBrand: KitchenAid\nDescription: Professional 5-quart stand mixer for home baking with 10-speed settings.\nDetails: Includes dough hook, flat beater, and wire whip, tilt-head design, 59 touchpoints per rotation.",
+    "weight": 26.0
+  },
+  {
+    "title": "Fender Player Stratocaster Electric Guitar",
+    "category": "Musical_Instruments",
+    "price": 799.99,
+    "summary": "Title: Fender Player Stratocaster Electric Guitar\nCategory: Musical Instruments\nBrand: Fender\nDescription: Classic Stratocaster design with modern Player Series pickups for versatile tones.\nDetails: Alder body, maple neck, 22 medium jumbo frets, 3 single-coil pickups, synchronized tremolo.",
+    "weight": 8.0
+  }
+]

@@ -353,7 +353,6 @@ Training metrics logged to Weights & Biases:
 ## 🙏 Acknowledgements
 
 - Dataset: [McAuley-Lab/Amazon-Reviews-2023](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023) — Julian McAuley, UC San Diego
-- Course: LLM Engineering by Ed Donner (Udemy) — project built as a guided capstone
 - Base Model: [meta-llama/Llama-3.2-3B](https://huggingface.co/meta-llama/Llama-3.2-3B)
 
 ---

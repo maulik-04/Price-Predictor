@@ -1,0 +1,48 @@
+# Core
+python-dotenv==1.0.0
+pydantic==2.0.0
+tqdm
+
+# HuggingFace
+datasets
+huggingface_hub
+transformers>=4.47.0
+peft>=0.14.0
+trl>=0.25.0
+bitsandbytes>=0.45.0
+accelerate>=1.3.0
+
+# Traditional ML
+scikit-learn
+xgboost
+pandas
+numpy
+
+# LLM APIs
+litellm
+groq
+openai
+
+# Vector Store
+chromadb
+sentence-transformers
+
+# Deployment
+modal
+
+# Visualization
+matplotlib
+plotly
+
+# Agents
+feedparser
+requests
+
+# Web App
+streamlit
+
+# Experiment Tracking
+wandb
+
+# PyTorch (install separately based on your CUDA version)
+# pip install torch --index-url https://download.pytorch.org/whl/cu118

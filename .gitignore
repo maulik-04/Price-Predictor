@@ -1,0 +1,53 @@
+# Environment
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data files (too large for git)
+*.pkl
+*.pth
+*.joblib
+*.parquet
+batches/
+output/
+lite/
+full/
+jsonl/
+category_data/
+
+# Modal
+.modal.toml
+
+# W&B
+wandb/
+
+# Models (stored on HuggingFace instead)
+models/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp

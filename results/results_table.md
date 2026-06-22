@@ -18,7 +18,7 @@
 | - | Random Forest (15k) | ~$85 | +$17 | 100 decision trees |
 | 2 | XGBoost (800k) | $68.23 | baseline | Gradient boosting |
 | 1 | **Fine-tuned Llama 3.2-3B** | **$58.74** | **-$9.49 (13.9%)** | QLoRA, 20k items |
-| ref | Reference full model | ~$52 | -$16 | 800k items, A100 |
+
 
 ## Fine-tuning Training Progress
 

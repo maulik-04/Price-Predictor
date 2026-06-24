@@ -110,4 +110,3 @@ if __name__ == "__main__":
     sample = load_category("Appliances")
     inspect_raw_item(sample)
     print(f"\nTotal raw items in Appliances: {len(sample):,}")
-    print("Run step2_clean_data.py next to filter and parse these items")

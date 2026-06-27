@@ -1,6 +1,5 @@
 """
-Modal Deployment: Llama 3.2-3B as a Serverless Cloud API
-=========================================================
+
 
 PURPOSE:
     Deploy the fine-tuned model as a persistent REST API
@@ -26,7 +25,7 @@ ARCHITECTURE:
 
 COLD START vs WARM:
     Cold start: container spun up from scratch -> ~30-60 seconds
-    Warm:       container already running -> ~2-3 seconds
+    Warm: container already running -> ~2-3 seconds
     scaledown_window=120: keep container alive 2 min after last call
 
 CLASS-BASED vs FUNCTION-BASED:

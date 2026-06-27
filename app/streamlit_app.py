@@ -12,7 +12,13 @@ HOW TO RUN LOCALLY:
 import streamlit as st
 import re
 
+import os
 
+# Set Modal credentials from Streamlit secrets
+# Works both locally (from .env) and on Streamlit Cloud (from secrets)
+if hasattr(st, 'secrets') and 'modal' in st.secrets:
+    os.environ['MODAL_TOKEN_ID']     = st.secrets['modal']['token_id']
+    os.environ['MODAL_TOKEN_SECRET'] = st.secrets['modal']['token_secret']
 st.set_page_config(
     page_title = "Amazon Price Predictor",
     page_icon  = "💰",

@@ -7,61 +7,55 @@ the fine-tuned Llama 3.2-3B model deployed on Modal.
 
 HOW TO RUN LOCALLY:
     streamlit run app/streamlit_app.py
-
-HOW TO DEPLOY FREE:
-    1. Push code to GitHub
-    2. Go to share.streamlit.io
-    3. Connect repo, set main file: app/streamlit_app.py
-    4. Add Modal token in secrets
 """
 
 import streamlit as st
 import re
 
-# ── Page Config ───────────────────────────────────────────────
+
 st.set_page_config(
     page_title = "Amazon Price Predictor",
     page_icon  = "💰",
     layout     = "centered",
 )
 
-# ── Constants ─────────────────────────────────────────────────
+
 MODEL_NAME  = "maulik78/pricer-2026-06-10_06.40.40-lite"
 HF_USER     = "maulik78"
 MODEL_MAE   = 58.74
 XGBOOST_MAE = 68.23
 
-# ── Example Products ──────────────────────────────────────────
+
 EXAMPLES = {
-    "🎧 Sony Headphones": {
+    " Sony Headphones": {
         "title":       "Sony WH-1000XM4 Wireless Headphones",
         "category":    "Electronics",
         "brand":       "Sony",
         "description": "Industry-leading noise cancelling wireless headphones",
         "features":    "30 hour battery, touch sensor controls, multipoint connection",
     },
-    "🔧 DeWalt Drill": {
+    " DeWalt Drill": {
         "title":       "DeWalt 20V MAX Cordless Drill Driver Kit",
         "category":    "Tools and Home Improvement",
         "brand":       "DeWalt",
         "description": "Compact and lightweight cordless drill",
         "features":    "High-speed transmission, LED work light, 2 batteries included",
     },
-    "🎮 Nintendo Switch": {
+    " Nintendo Switch": {
         "title":       "Nintendo Switch OLED Model",
         "category":    "Video Games",
         "brand":       "Nintendo",
         "description": "Gaming console with vibrant 7-inch OLED screen",
         "features":    "TV, tabletop and handheld modes, 64GB storage",
     },
-    "🏠 KitchenAid Mixer": {
+    " KitchenAid Mixer": {
         "title":       "KitchenAid Artisan Series 5-Qt Stand Mixer",
         "category":    "Appliances",
         "brand":       "KitchenAid",
         "description": "Professional stand mixer for home baking",
         "features":    "10 speed settings, dough hook, flat beater, wire whip",
     },
-    "🎸 Fender Guitar": {
+    " Fender Guitar": {
         "title":       "Fender Player Stratocaster Electric Guitar",
         "category":    "Musical Instruments",
         "brand":       "Fender",
@@ -74,17 +68,13 @@ EXAMPLES = {
 def build_summary(title, category, brand, description, features) -> str:
     """
     Format product fields into the model's training format.
-
-    CRITICAL: Must match the exact format used during fine-tuning.
-    The model was trained on summaries with this exact structure.
-    Any change degrades predictions.
     """
     parts = []
-    if title:       parts.append(f"Title: {title}")
-    if category:    parts.append(f"Category: {category}")
-    if brand:       parts.append(f"Brand: {brand}")
+    if title: parts.append(f"Title: {title}")
+    if category: parts.append(f"Category: {category}")
+    if brand: parts.append(f"Brand: {brand}")
     if description: parts.append(f"Description: {description}")
-    if features:    parts.append(f"Details: {features}")
+    if features: parts.append(f"Details: {features}")
     return "\n".join(parts)
 
 
@@ -121,11 +111,8 @@ def predict_price(summary: str):
         return None, str(e)
 
 
-# ══════════════════════════════════════════════════════════════
-# PAGE LAYOUT
-# ══════════════════════════════════════════════════════════════
 
-# ── Header ────────────────────────────────────────────────────
+
 st.title("💰 Amazon Price Predictor")
 st.markdown(f"""
 Predict the price of any Amazon product from its description.
@@ -137,11 +124,11 @@ Uses a fine-tuned **Llama 3.2-3B** model deployed on Modal.
 
 st.divider()
 
-# ── Examples ──────────────────────────────────────────────────
-st.subheader("🎯 Try an Example")
+
+st.subheader(" Try an Example")
 st.caption("Click any example to pre-fill the form below.")
 
-cols        = st.columns(len(EXAMPLES))
+cols = st.columns(len(EXAMPLES))
 selected_ex = None
 
 for col, (label, data) in zip(cols, EXAMPLES.items()):
@@ -150,47 +137,47 @@ for col, (label, data) in zip(cols, EXAMPLES.items()):
 
 st.divider()
 
-# ── Input Form ────────────────────────────────────────────────
-st.subheader("📦 Product Details")
+
+st.subheader(" Product Details")
 
 ex = selected_ex or {}
 
 col1, col2 = st.columns(2)
 with col1:
-    title    = st.text_input("Product Title *", value=ex.get("title", ""),    placeholder="Sony WH-1000XM4")
-    category = st.text_input("Category",        value=ex.get("category", ""), placeholder="Electronics")
+    title    = st.text_input("Product Title *", value=ex.get("title", ""), placeholder="Sony WH-1000XM4")
+    category = st.text_input("Category", value=ex.get("category", ""), placeholder="Electronics")
 with col2:
-    brand = st.text_input("Brand",              value=ex.get("brand", ""),    placeholder="Sony")
+    brand = st.text_input("Brand", value=ex.get("brand", ""), placeholder="Sony")
 
 description = st.text_input(
     "Description",
-    value       = ex.get("description", ""),
+    value = ex.get("description", ""),
     placeholder = "Industry leading noise cancelling headphones"
 )
 
 features = st.text_area(
     "Features / Details",
-    value       = ex.get("features", ""),
+    value = ex.get("features", ""),
     placeholder = "30 hour battery, touch controls, Alexa built in",
-    height      = 80,
+    height = 80,
 )
 
 # Show what gets sent to the model
 if title or description:
     summary = build_summary(title, category, brand, description, features)
-    with st.expander("👁️ What the model receives"):
+    with st.expander("What the model receives"):
         st.code(summary, language=None)
 
 st.divider()
 
-# ── Predict Button ────────────────────────────────────────────
+
 predict = st.button(
-    "🔮 Predict Price",
-    type                = "primary",
+    "Predict Price",
+    type = "primary",
     use_container_width = True,
 )
 
-# ── Result ────────────────────────────────────────────────────
+
 if predict:
 
     if not title:
@@ -207,7 +194,7 @@ if predict:
 
     else:
         # Main result
-        st.success(f"### 💵 Predicted Price: ${price:.2f}")
+        st.success(f"### Predicted Price: ${price:.2f}")
 
         # Metrics
         m1, m2, m3 = st.columns(3)
@@ -233,10 +220,9 @@ if predict:
             f"*(based on ±${MODEL_MAE} average model error)*"
         )
 
-# ── Project Details ───────────────────────────────────────────
 st.divider()
 
-with st.expander("📊 How does this work?"):
+with st.expander("How does this work?"):
     st.markdown(f"""
     This model was fine-tuned on 20,000 Amazon product descriptions
     using QLoRA — a memory-efficient fine-tuning technique that runs
@@ -260,7 +246,7 @@ with st.expander("📊 How does this work?"):
     | **Fine-tuned Llama 3.2-3B** | **${MODEL_MAE}** |
     """)
 
-with st.expander("🔬 Technical details"):
+with st.expander(" Technical details"):
     st.markdown(f"""
     **QLoRA = Quantization + LoRA**
 
@@ -285,7 +271,7 @@ with st.expander("🔬 Technical details"):
     W&B training run: [wandb.ai/maulik04-lnmiit/pricer](https://wandb.ai/maulik04-lnmiit/pricer)
     """)
 
-with st.expander("🗂️ Datasets"):
+with st.expander(" Datasets"):
     st.markdown(f"""
     All datasets are public on HuggingFace:
 
@@ -296,13 +282,13 @@ with st.expander("🗂️ Datasets"):
     | [maulik78/items_prompts_full](https://huggingface.co/datasets/maulik78/items_prompts_full) | 820k |
     """)
 
-# ── Footer ────────────────────────────────────────────────────
+
 st.divider()
 st.markdown(
     f"""
     <div style='text-align:center; color:gray; font-size:12px'>
         Built by <b>Maulik Mathur</b> &nbsp;|&nbsp;
-        <a href='https://huggingface.co/{HF_USER}' target='_blank'>🤗 HuggingFace</a>
+        <a href='https://huggingface.co/{HF_USER}' target='_blank'> HuggingFace</a>
         &nbsp;|&nbsp;
         <a href='https://github.com/maulik-04/amazon-price-predictor' target='_blank'>GitHub</a>
         <br>

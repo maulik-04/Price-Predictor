@@ -86,17 +86,20 @@ def build_summary(title, category, brand, description, features) -> str:
 
 @st.cache_resource
 def get_pricer():
-    """
-    Connect to the Modal deployed service.
+    import os
+    import modal
 
-    @st.cache_resource keeps the connection alive for the session.
-    Without this, Streamlit would reconnect on every button click.
-    """
+    # Authenticate Modal using Streamlit secrets
+    # This is needed when running on Streamlit Cloud
+    if hasattr(st, 'secrets') and 'modal' in st.secrets:
+        os.environ['MODAL_TOKEN_ID']     = st.secrets['modal']['token_id']
+        os.environ['MODAL_TOKEN_SECRET'] = st.secrets['modal']['token_secret']
+
     try:
-        import modal
         Pricer = modal.Cls.from_name("pricer-service", "Pricer")
         return Pricer()
     except Exception as e:
+        st.error(f"Could not connect to Modal: {e}")
         return None
 
 

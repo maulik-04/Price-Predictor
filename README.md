@@ -12,7 +12,7 @@ I wanted to understand the full pipeline — not just train a model and call it 
 - Does text preprocessing with an LLM actually help downstream models?
 - How much better is a fine-tuned LLM compared to XGBoost on a text-based task?
 - How do you actually deploy a model so it runs as a real API?
-- What does a multi-agent system look like in practice?
+- How do you build a demo that lets anyone try the model?
 
 This project answered all of those for me.
 

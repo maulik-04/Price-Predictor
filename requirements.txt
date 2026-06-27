@@ -19,7 +19,6 @@ pandas
 numpy
 
 # LLM APIs
-litellm
 groq
 openai
 
@@ -34,8 +33,7 @@ modal
 matplotlib
 plotly
 
-# Agents
-feedparser
+
 requests
 
 # Web App

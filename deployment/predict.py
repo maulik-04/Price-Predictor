@@ -1,6 +1,4 @@
 """
-predict.py — Simple Inference Interface
-=========================================
 
 PURPOSE:
     Clean interface to get price predictions from the fine-tuned model.
@@ -24,22 +22,15 @@ import torch
 
 # These must EXACTLY match what was used during fine-tuning
 # Any change breaks predictions
-QUESTION     = "What does this cost to the nearest dollar?"
+QUESTION = "What does this cost to the nearest dollar?"
 PRICE_PREFIX = "Price is $"
-BASE_MODEL      = "meta-llama/Llama-3.2-3B"
+BASE_MODEL = "meta-llama/Llama-3.2-3B"
 FINETUNED_MODEL = "maulik78/pricer-2026-06-10_06.40.40-lite"
 
 
 def format_prompt(description: str) -> str:
     """
     Format description as the inference prompt.
-    
-    CRITICAL: Must match training format exactly.
-    During training, examples ended with "Price is $278.00"
-    During inference, we stop at "Price is $" and let model complete.
-    
-    Even a single extra space or different punctuation
-    will cause the model to generate garbage.
     """
     return f"{QUESTION}\n\n{description.strip()}\n\n{PRICE_PREFIX}"
 

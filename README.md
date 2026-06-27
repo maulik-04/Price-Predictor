@@ -175,7 +175,7 @@ Deployment: [modal.com/apps/maulikalwar04/main/deployed/pricer-service](https://
 ## How To Run It
 
 ```bash
-git clone https://github.com/maulik-04/amazon-price-predictor.git
+git clone https://github.com/maulik-04/Price-Predictor.git
 cd amazon-price-predictor
 pip install -r requirements.txt
 cp .env.example .env

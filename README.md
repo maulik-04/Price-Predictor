@@ -157,23 +157,7 @@ Warm calls: ~2-3 seconds
 
 Deployment: [modal.com/apps/maulikalwar04/main/deployed/pricer-service](https://modal.com/apps/maulikalwar04/main/deployed/pricer-service)
 
----
 
-## Multi-Agent System
-
-Built three agents on top of the deployed model:
-
-**PriceAgent** — combines two strategies:
-- Fine-tuned Llama (30% weight) via Modal: knows Amazon pricing patterns
-- Groq Llama 3.3-70B (70% weight): broader world knowledge, larger model
-
-The 70/30 split reflects the fact that the 70B model is just more capable generally. The specialist adds domain knowledge on top.
-
-**DealScanner** — reads RSS feeds from deal sites, uses Groq LLM to filter 30-40 noisy raw listings down to 5 clean ones with actual prices. The LLM filtering handles stuff simple parsers can't — like distinguishing "$50 off" (a discount) from "$50" (the actual price).
-
-**Notifier** — sends a push notification via Pushover when the model's estimated value is significantly higher than the listed deal price.
-
----
 
 ## Datasets on HuggingFace
 
@@ -227,65 +211,6 @@ modal deploy deployment/modal_service.py
 
 ---
 
-## Project Structure
 
-```
-amazon-price-predictor/
-│
-├── pipeline/
-│   ├── step1_load_data.py        load raw Amazon data
-│   ├── step2_clean_data.py       filter and parse
-│   ├── step3_sample_data.py      weighted sampling
-│   ├── step4_push_to_hub.py      push to HuggingFace
-│   └── step5_build_prompts.py    build training prompts
-│
-├── models/
-│   ├── baseline_models.py        random through XGBoost
-│   ├── train_qlora.py            QLoRA fine-tuning
-│   └── evaluate.py               evaluation harness
-│
-├── deployment/
-│   ├── modal_service.py          serverless GPU API
-│   └── predict.py                local + remote inference
-│
-├── agents/
-│   ├── price_agent.py            specialist + frontier ensemble
-│   ├── deal_scanner.py           RSS scraper + LLM filter
-│   └── notifier.py               push notifications
-│
-├── notebooks/
-│   ├── 01_data_pipeline.ipynb
-│   ├── 02_model_comparison.ipynb
-│   ├── 03_fine_tuning.ipynb
-│   └── 04_deployment.ipynb
-│
-└── app/
-    └── streamlit_app.py          web demo
-```
-
----
-
-## Things I'd Do Differently
-
-- Train on full 800k instead of 20k — expected to drop MAE to ~$52
-- Also fine-tune the MLP layers, not just attention
-- Build a proper RAG pipeline — retrieve similar products at inference time and give their prices as context
-- Learn the ensemble weights (70/30) from validation data instead of setting them by intuition
-
----
-
-## Stack
-
-Python · HuggingFace Datasets · PyTorch · Transformers · PEFT · TRL · bitsandbytes · XGBoost · scikit-learn · LiteLLM · Groq · Modal · Weights & Biases · Streamlit · Pushover
-
----
-
-## Acknowledgements
-
-Dataset: [McAuley-Lab/Amazon-Reviews-2023](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023)  
-Base model: [meta-llama/Llama-3.2-3B](https://huggingface.co/meta-llama/Llama-3.2-3B)  
-Built as a capstone following Ed Donner's LLM Engineering course — all components run and deployed independently.
-
----
 
 *Maulik Mathur · B.Tech CSE (AI & DS) · LNMIIT Jaipur*
